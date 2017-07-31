@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import { getTopRecipes } from '../../ducks/top-recipes';
+import { getRecipes } from '../../ducks/search-recipes';
 import { connect } from 'react-redux';
 import './home.css';
 import _ from 'lodash';
 import homePhoto from '../../photos/home-photo.png';
+import { Redirect } from 'react-router-dom';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      trendingRecipes: []
+      trendingRecipes: [],
+      searchTerm: '',
+      shouldRedirect: false,
     }
+
+  this.handleRecipeSearch = this.handleRecipeSearch.bind(this);
+  this.searchRecipes = this.searchRecipes.bind(this);
+
   }
 
   // GET TRENDING RECIPES //
@@ -19,8 +27,8 @@ class Home extends Component {
 
   this.props.getTopRecipes().then((data) => {
 
-  var obj = this.props.featured;
-  var arr = _.values(obj);
+  let obj = this.props.featured;
+  let arr = _.values(obj);
 
     this.setState({
       trendingRecipes: arr[1]
@@ -28,9 +36,33 @@ class Home extends Component {
   })
 }
 
+// SEARCH //
+
+handleRecipeSearch(event) {
+  this.setState({
+    searchTerm: event.target.value,
+  })
+}
+
+searchRecipes(event) {
+  event.preventDefault();
+
+  this.props.getRecipes(this.state.searchTerm);
+
+  this.setState({
+    shouldRedirect: true
+  })
+
+}
+
 // RENDER JSX //
 
+
   render() {
+
+    if (this.state.shouldRedirect) {
+      return <Redirect to="/recipes" />
+    }
 
     const Trending = this.state.trendingRecipes.map((data, i) => (
          <div className="trending-recipes-list" key={i}>
@@ -48,8 +80,8 @@ class Home extends Component {
         <div className="recipe-search">
           <div className="search-contain">
             <h1 id="search-recipes">Search Recipes</h1>
-            <input id="search-input"></input>
-            <button id="search-button">Search</button>
+            <input id="search-input" onChange={this.handleRecipeSearch}></input>
+            <button id="search-button" onClick={this.searchRecipes}>Search</button>
           </div>
         </div>
           <h1 id="trending-title">Top Recipes</h1>
@@ -68,4 +100,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getTopRecipes})(Home);
+export default connect(mapStateToProps, {getTopRecipes, getRecipes})(Home);

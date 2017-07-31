@@ -27,3 +27,9 @@
   margin-right: 10px;
   font-size: 22px;
 }
+
+.link-text {
+  text-decoration: none;
+  color: #f8dfba;
+  cursor: pointer;
+}

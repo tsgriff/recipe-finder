@@ -32,7 +32,7 @@
 
 .recipe-search {
   height: 250px;
-  background-image: url('../../photos/italian-kitchen.jpg');
+  background-image: url('../../photos/kitchen2.jpg');
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
@@ -87,7 +87,7 @@
   display: flex;
   justify-content: center;
   flex-flow: row wrap;
-  padding-bottom: 50px;
+  padding-bottom: 85px;
 }
 
 #trending-title {

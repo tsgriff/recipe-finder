@@ -15,7 +15,6 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  /* padding-top: 35px; */
   border-bottom: 2px solid #421206;
 }
 
@@ -100,15 +99,15 @@
 }
 
 #trending-images {
-  height: auto;
-  width: 250px;
+  height: 250px;
+  width: 350px;
   margin: 25px;
 }
 
 #trending-recipes-titles {
   text-align: center;
   width: 250px;
-  margin-left: 25px;
+  margin-left: 65px;
 }
 
 .trending-recipes-list:hover {

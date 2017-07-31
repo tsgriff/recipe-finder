@@ -1,0 +1,21 @@
+#recipe-details {
+  width: 100%;
+  height: auto;
+  padding-bottom: 75px;
+  background-color: #f8dfba;
+  color: #421206;
+  display: flex;
+  justify-content: center;
+}
+
+.details-header {
+  padding-top: 100px;
+  text-align: center;
+  font-size: 30px;
+}
+
+#recipe-image {
+  margin-top: 50px;
+  width: 700px;
+  height: auto;
+}

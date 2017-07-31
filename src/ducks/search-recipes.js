@@ -25,6 +25,6 @@ export default function reducer(state = initialState, action) {
 export function getRecipes(term) {
   return {
     type: GET_RECIPES,
-    payload: recipesimport.getRecipes(term),
+    payload: recipesimport.getRecipes(term)
   }
 }

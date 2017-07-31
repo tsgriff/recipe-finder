@@ -21,7 +21,8 @@
 }
 
 #results-images {
-  height: 250px;
+  /* height: 250px; */
+  height: auto;
   width: 350px;
   margin: 25px;
 }
@@ -39,4 +40,9 @@
 
 .results-list:hover {
   opacity: 0.65;
+}
+
+#results-link {
+  text-decoration: none;
+  color: #421206;
 }

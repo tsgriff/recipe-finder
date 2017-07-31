@@ -6,6 +6,8 @@ import './home.css';
 import _ from 'lodash';
 import homePhoto from '../../photos/home-photo.png';
 import { Redirect } from 'react-router-dom';
+import Loading from '../../components/Loading/loading';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
   constructor(props) {
@@ -24,6 +26,8 @@ class Home extends Component {
   // GET TRENDING RECIPES //
 
   componentDidMount() {
+
+  document.body.scrollTop = 0;
 
   this.props.getTopRecipes().then((data) => {
 
@@ -47,11 +51,18 @@ handleRecipeSearch(event) {
 searchRecipes(event) {
   event.preventDefault();
 
+  if (this.state.searchTerm) {
+
   this.props.getRecipes(this.state.searchTerm);
 
   this.setState({
     shouldRedirect: true
   })
+}
+
+else {
+  alert('Please enter a search term')
+}
 
 }
 
@@ -66,10 +77,16 @@ searchRecipes(event) {
 
     const Trending = this.state.trendingRecipes.map((data, i) => (
          <div className="trending-recipes-list" key={i}>
+         <Link id="results-link" to={`/recipe/${data.recipe_id}`}>
            <img id="trending-images" src={data.image_url} alt="N/A" />
             <h3 id="trending-recipes-titles">{data.title}</h3>
+          </Link>
          </div>
        ))
+
+       if (this.props.loading) {
+         return (<Loading />)
+       }
 
     return (
       <section className="Home">
@@ -80,7 +97,7 @@ searchRecipes(event) {
         <div className="recipe-search">
           <div className="search-contain">
             <h1 id="search-recipes">Search Recipes</h1>
-            <input id="search-input" onChange={this.handleRecipeSearch}></input>
+            <input id="search-input" value={this.state.searchTerm} onChange={this.handleRecipeSearch}></input>
             <button id="search-button" onClick={this.searchRecipes}>Search</button>
           </div>
         </div>

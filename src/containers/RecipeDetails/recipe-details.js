@@ -17,14 +17,25 @@ class RecipeDetails extends Component {
   componentDidMount() {
     document.body.scrollTop = 0;
 
-    // API CALL WITH RECIPE ID PARAMETERS//
+    // API CALL WITH RECIPE ID AS PARAMETER//
 
     let { id } = this.props.match.params;
-    this.props.getDetails(id);
+
+    this.props.getDetails(id).then((data) => {
 
     // SET STATE WITH INGREDIENTS //
 
-  }
+      let ingredientsArr = []
+
+      this.props.details.ingredients.map((data, i) => {
+        ingredientsArr.push(data);
+      })
+
+    this.setState({
+      ingredients: ingredientsArr
+    })
+  })
+}
 
 
 render() {
@@ -35,14 +46,15 @@ render() {
 
   else {
 
-    const Ingredients = this.props.details.ingredients.map((data, i) => {
+    const Ingredients = this.state.ingredients.map((data, i) => {
       return (
-        <div className="details-list" key={i}>
-          data
-        </div>
+        <ul key={i}>
+          <li className="ingredients">
+            {data}
+          </li>
+        </ul>
       )
     })
-
 
   return (
     <section id="recipe-details">
@@ -51,7 +63,12 @@ render() {
         <img id="recipe-image" src={this.props.details.image_url} alt="" />
       </div>
       <div id="ingredients-list">
+        <h1 id="ingredients-title">Ingredients</h1>
         {Ingredients}
+      </div>
+      <div id="directions">
+        <h1 id="directions-title">Directions</h1>
+        <h1><a id="recipe-source-referral" href={this.props.details.source_url} target="_blank" rel="noopener noreferrer">Click here for cooking directions from {this.props.details.publisher}</a></h1>
       </div>
     </section>
   )

@@ -6,6 +6,7 @@
   color: #421206;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .details-header {
@@ -16,6 +17,37 @@
 
 #recipe-image {
   margin-top: 50px;
-  width: 700px;
+  width: 75vw;
   height: auto;
+}
+
+#ingredients-list {
+  text-align: center;
+  margin-top: 25px;
+}
+
+#ingredients-title {
+  font-size: 40px;
+}
+
+.ingredients {
+  font-size: 30px;
+  margin: 5px;
+}
+
+#directions {
+  text-align: center;
+  margin-top: 25px;
+}
+
+#directions-title {
+  font-size: 40px;
+}
+
+#recipe-source-referral {
+  text-decoration: none;
+  color: #421206;
+  font-weight: normal;
+  font-size: 30px;
+  margin: 5px;
 }

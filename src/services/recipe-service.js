@@ -20,5 +20,5 @@ export const getDetails = function(id) {
   return axios.get(`https://community-food2fork.p.mashape.com/get?key=${API_KEY}&rId=${id}`, {
     "headers": MASHAPE_KEY
   })
-  .then(res => {console.log(res.data.recipe); return res.data.recipe})
+  .then(res => {return res.data.recipe})
 }

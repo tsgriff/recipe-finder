@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getTopRecipes } from '../../ducks/top-recipes';
 import { getRecipes } from '../../ducks/search-recipes';
+import { videoSearch } from '../../ducks/youtube';
 import { connect } from 'react-redux';
 import './home.css';
 import _ from 'lodash';
@@ -54,6 +55,7 @@ searchRecipes(event) {
   if (this.state.searchTerm) {
 
   this.props.getRecipes(this.state.searchTerm);
+  this.props.videoSearch(this.state.searchTerm + " recipe");
 
   this.setState({
     shouldRedirect: true
@@ -63,11 +65,9 @@ searchRecipes(event) {
 else {
   alert('Please enter a search term')
 }
-
 }
 
 // RENDER JSX //
-
 
   render() {
 
@@ -92,7 +92,7 @@ else {
       <section className="Home">
         <div className="Home-header">
           <img id="home-photo" src={homePhoto} alt="" />
-          <h1>Taylor and Claire's <br /> Recipe Finder</h1>
+          <h1>Taylor and Claires <br /> Recipe Finder</h1>
         </div>
         <div className="recipe-search">
           <div className="search-contain">
@@ -117,4 +117,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getTopRecipes, getRecipes})(Home);
+export default connect(mapStateToProps, {getTopRecipes, getRecipes, videoSearch})(Home);

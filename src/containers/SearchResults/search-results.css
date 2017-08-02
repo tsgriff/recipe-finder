@@ -8,7 +8,6 @@
 
 #results-main-title {
   padding-top: 105px;
-  padding-top: -20px;
   text-align: center;
   font-size: 45px;
 }
@@ -45,4 +44,40 @@
 #results-link {
   text-decoration: none;
   color: #421206;
+}
+
+/* VIDEOS */
+
+#video-results-title {
+  padding-top: 105px;
+  text-align: center;
+  font-size: 45px;
+  padding-bottom: 85px;
+}
+
+.videos-contain {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.video-list-item {
+  width: 550px;
+  height: auto;
+  list-style: none;
+  margin: 45px;
+  text-align: center;
+}
+
+.iframe {
+  border: none;
+  width: 515px;
+  height: 290px;
+  margin-bottom: 25px;
+}
+
+.video-description {
+  margin-top: 25px;
 }

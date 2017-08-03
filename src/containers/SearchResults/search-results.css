@@ -24,7 +24,6 @@
 }
 
 #results-images {
-  /* height: 250px; */
   height: auto;
   width: 350px;
   margin: 25px;
@@ -52,11 +51,17 @@
 
 /* BUTTONS */
 
-.previous-next-contain {
+.previous-next-contain-results {
   text-align: center;
+  margin-top: 75px;
 }
 
-#previous-button {
+.previous-next-contain-youtube {
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.previous-button {
   margin-right: 5px;
   width: 85px;
   height: 30px;
@@ -67,15 +72,15 @@
   cursor: pointer;
 }
 
-#previous-button:hover {
+.previous-button:hover {
   opacity: 0.8;
 }
 
-#previous-button:active {
+.previous-button:active {
   transform: translateY(2px);
 }
 
-#next-button {
+.next-button {
   margin-left: 5px;
   width: 85px;
   height: 30px;
@@ -87,11 +92,11 @@
 }
 
 
-#next-button:hover {
+.next-button:hover {
   opacity: 0.8;
 }
 
-#next-button:active {
+.next-button:active {
   transform: translateY(2px);
 }
 
@@ -107,7 +112,7 @@
   background-position: center;
   background-size: cover;
   margin-top: 100px;
-  margin-bottom: 100px;
+  margin-bottom: 75px;
 }
 
 #video-results-title {

@@ -57,12 +57,13 @@
 
 #search-input {
   margin-bottom: 25px;
+  width: 250px;
   outline: none;
   background-color: #f8dfba;
   color: #421206;
   border: 2px solid #f8dfba;
   height: 30px;
-  font-size: 20px;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -117,6 +118,7 @@
   cursor: pointer;
 }
 
-.previous-next-contain {
+.previous-next-contain-home {
   background-color: #f8dfba;
+  padding-bottom: 50px;
 }

@@ -40,6 +40,11 @@ class Home extends Component {
       trendingRecipes: arr[1]
     })
   })
+
+}
+
+componentWillReceiveProps() {
+  document.body.scrollTop = 0;
 }
 
 // SEARCH //
@@ -97,7 +102,7 @@ else {
         <div className="recipe-search">
           <div className="search-contain">
             <h1 id="search-recipes">Search Recipes</h1>
-            <input id="search-input" value={this.state.searchTerm} onChange={this.handleRecipeSearch}></input>
+            <input id="search-input" value={this.state.searchTerm} placeholder="Recipe, dish, or ingredient name" onChange={this.handleRecipeSearch}></input>
             <Link id="results-link" to={`/recipes/${this.state.searchTerm}`}>
             <button id="search-button" onClick={this.searchRecipes}>Search</button>
             </Link>
@@ -108,9 +113,9 @@ else {
           <div className="trending-recipes">
           {Trending}
         </div>
-        <div className="previous-next-contain">
-          <button id="previous-button">Previous</button>
-          <button id="next-button">Next</button>
+        <div className="previous-next-contain-home">
+          <button className="previous-button">Previous</button>
+          <button className="next-button">Next</button>
         </div>
       </section>
     );

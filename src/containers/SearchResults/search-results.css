@@ -3,13 +3,13 @@
   width: 100%;
   background-color: #f8dfba;
   color: #421206;
-  padding-bottom: 85px;
 }
 
 #results-main-title {
   padding-top: 105px;
   text-align: center;
   font-size: 45px;
+  letter-spacing: 4px;
 }
 
 #results-titles {
@@ -17,6 +17,10 @@
   width: 350px;
   text-align: center;
   margin-left: 25px;
+}
+
+#results-rating {
+  text-align: center;
 }
 
 #results-images {
@@ -46,13 +50,72 @@
   color: #421206;
 }
 
+/* BUTTONS */
+
+.previous-next-contain {
+  text-align: center;
+}
+
+#previous-button {
+  margin-right: 5px;
+  width: 85px;
+  height: 30px;
+  outline: none;
+  border: none;
+  background-color: #421206;
+  color: #f8dfba;
+  cursor: pointer;
+}
+
+#previous-button:hover {
+  opacity: 0.8;
+}
+
+#previous-button:active {
+  transform: translateY(2px);
+}
+
+#next-button {
+  margin-left: 5px;
+  width: 85px;
+  height: 30px;
+  outline: none;
+  border: none;
+  background-color: #421206;
+  color: #f8dfba;
+  cursor: pointer;
+}
+
+
+#next-button:hover {
+  opacity: 0.8;
+}
+
+#next-button:active {
+  transform: translateY(2px);
+}
+
 /* VIDEOS */
+
+#video-section-title-contain {
+  color: #f8dfba;
+  width: 100%;
+  height: 250px;
+  background-image: url('../../photos/food-and-wine.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
 
 #video-results-title {
   padding-top: 105px;
   text-align: center;
   font-size: 45px;
   padding-bottom: 85px;
+  letter-spacing: 4px;
 }
 
 .videos-contain {

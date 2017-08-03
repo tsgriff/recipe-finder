@@ -17,8 +17,15 @@
 
 #recipe-image {
   margin-top: 50px;
-  width: 75vw;
+  width: 50vw;
   height: auto;
+}
+
+.social-ranking {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  font-weight: normal;
 }
 
 #ingredients-list {

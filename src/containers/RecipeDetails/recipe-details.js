@@ -28,7 +28,7 @@ class RecipeDetails extends Component {
       let ingredientsArr = []
 
       this.props.details.ingredients.map((data, i) => {
-        ingredientsArr.push(data);
+        return ingredientsArr.push(data);
       })
 
     this.setState({
@@ -61,6 +61,9 @@ render() {
       <div className="details-header">
         <h1 id="recipe-title">{this.props.details.title}</h1>
         <img id="recipe-image" src={this.props.details.image_url} alt="" />
+      </div>
+      <div className="social-ranking">
+        <h1>Social Ranking: {Math.round(this.props.details.social_rank)}</h1>
       </div>
       <div id="ingredients-list">
         <h1 id="ingredients-title">Ingredients</h1>

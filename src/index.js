@@ -31,7 +31,7 @@ ReactDOM.render(
         <div>
               <Route component={ Nav }/>
             <Switch>
-              <Route path="/recipes" component={ SearchResults } />
+              <Route path="/recipes/:term" component={ SearchResults } />
               <Route path="/recipe/:id" component={ RecipeDetails } />
               <Route path="/profile" component={ UserProfile } />
               <Route path="/about" component={ About } />

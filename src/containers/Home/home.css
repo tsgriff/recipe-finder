@@ -31,7 +31,7 @@
 /* SEARCH */
 
 .recipe-search {
-  height: 250px;
+  height: 300px;
   background-image: url('../../photos/kitchen2.jpg');
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -52,6 +52,7 @@
 
 #search-recipes {
   margin-bottom: 25px;
+  letter-spacing: 4px;
 }
 
 #search-input {
@@ -94,9 +95,11 @@
   text-align: center;
   background-color: #f8dfba;
   color: #421206;
-  height: 75px;
+  height: 100px;
   padding-top: 50px;
   font-size: 40px;
+  padding-top: 125px;
+  letter-spacing: 4px;
 }
 
 #trending-images {
@@ -107,11 +110,13 @@
 
 #trending-recipes-titles {
   text-align: center;
-  width: 250px;
-  margin-left: 65px;
 }
 
 .trending-recipes-list:hover {
   opacity: 0.65;
   cursor: pointer;
+}
+
+.previous-next-contain {
+  background-color: #f8dfba;
 }

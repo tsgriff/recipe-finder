@@ -22,9 +22,9 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-export function getTopRecipes() {
+export function getTopRecipes(pageNum) {
   return {
     type: GET_DATA,
-    payload: toprecipesimport.getTopRecipes()
+    payload: toprecipesimport.getTopRecipes(pageNum)
   }
 }

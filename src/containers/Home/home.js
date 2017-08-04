@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { getTopRecipes } from '../../ducks/top-recipes';
-import { getRecipes } from '../../ducks/search-recipes';
-import { getRecipesPageTwo } from '../../ducks/search-recipes-second';
-import { videoSearch } from '../../ducks/youtube';
 import { connect } from 'react-redux';
 import './home.css';
-import _ from 'lodash';
 import homePhoto from '../../photos/home-photo.png';
 import { Redirect } from 'react-router-dom';
 import Loading from '../../components/Loading/loading';
@@ -15,13 +11,19 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      trendingRecipes: [],
+      topRecipesOne: [],
+      topRecipesTwo: [],
       searchTerm: '',
       shouldRedirect: false,
+      displayPrev: false,
+      displayNext: true
     }
 
   this.handleRecipeSearch = this.handleRecipeSearch.bind(this);
   this.searchRecipes = this.searchRecipes.bind(this);
+
+  this.previousPage = this.previousPage.bind(this);
+  this.nextPage = this.nextPage.bind(this);
 
   }
 
@@ -31,15 +33,30 @@ class Home extends Component {
 
   document.body.scrollTop = 0;
 
-  this.props.getTopRecipes().then((data) => {
+  // GET FIRST PAGE OF TOP RECIPES //
 
-  let obj = this.props.featured;
-  let arr = _.values(obj);
+  this.props.getTopRecipes(1).then((data) => {
 
     this.setState({
-      trendingRecipes: arr[1]
+      topRecipesOne: data.value
     })
+
   })
+
+  this.props.getTopRecipes(2).then((data) => {
+
+
+    let secondPageArr = []
+
+    data.value.map((data, i) => {
+
+     return secondPageArr.push(data);
+
+  })
+
+    this.setState({topRecipesTwo: secondPageArr})
+
+})
 
 }
 
@@ -71,6 +88,35 @@ else {
 }
 }
 
+// BUTTONS //
+
+  // PREVIOUS //
+
+previousPage() {
+
+  this.setState({
+    displayPrev: false,
+    displayNext: true
+  })
+
+
+  document.body.scrollTop = 1000;
+
+}
+
+  // NEXT //
+
+nextPage() {
+
+  document.body.scrollTop = 1000;
+
+    this.setState({
+      displayPrev: true,
+      displayNext: false
+    })
+
+}
+
 // RENDER JSX //
 
   render() {
@@ -79,7 +125,17 @@ else {
       return <Redirect to={`/recipes/${this.state.searchTerm}`} />
     }
 
-    const Trending = this.state.trendingRecipes.map((data, i) => (
+    let resultsArr = null
+
+    if (this.state.displayNext) {
+      resultsArr = this.state.topRecipesOne
+    }
+
+    if (this.state.displayPrev) {
+      resultsArr = this.state.topRecipesTwo
+    }
+
+    const results = resultsArr.map((data, i) => (
          <div className="trending-recipes-list" key={i}>
          <Link id="results-link" to={`/recipe/${data.recipe_id}`}>
            <img id="trending-images" src={data.image_url} alt="N/A" />
@@ -97,7 +153,7 @@ else {
       <section className="Home">
         <div className="Home-header">
           <img id="home-photo" src={homePhoto} alt="" />
-          <h1>Taylor and Claire's <br /> Recipe Finder</h1>
+          <h1>Taylor and Claires <br /> Recipe Finder</h1>
         </div>
         <div className="recipe-search">
           <div className="search-contain">
@@ -106,16 +162,15 @@ else {
             <Link id="results-link" to={`/recipes/${this.state.searchTerm}`}>
             <button id="search-button" onClick={this.searchRecipes}>Search</button>
             </Link>
-
           </div>
         </div>
           <h1 id="trending-title">Top Recipes</h1>
           <div className="trending-recipes">
-          {Trending}
+          {results}
         </div>
         <div className="previous-next-contain-home">
-          <button className="previous-button">Previous</button>
-          <button className="next-button">Next</button>
+          {this.state.displayPrev ? <button className="previous-button" onClick={this.previousPage}>Previous</button> : null}
+          {this.state.displayNext ? <button className="next-button" onClick={this.nextPage}>Next</button> : null}
         </div>
       </section>
     );
@@ -129,4 +184,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getTopRecipes, getRecipes, videoSearch, getRecipesPageTwo})(Home);
+export default connect(mapStateToProps, {getTopRecipes})(Home);

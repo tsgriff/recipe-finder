@@ -43,20 +43,15 @@ class Home extends Component {
 
   })
 
+  // GET SECOND PAGE OF TOP RECIPES //
+
   this.props.getTopRecipes(2).then((data) => {
 
-
-    let secondPageArr = []
-
-    data.value.map((data, i) => {
-
-     return secondPageArr.push(data);
+    this.setState({
+      topRecipesTwo: data.value
+    })
 
   })
-
-    this.setState({topRecipesTwo: secondPageArr})
-
-})
 
 }
 

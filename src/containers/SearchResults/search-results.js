@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { getRecipes } from '../../ducks/search-recipes';
-import { getRecipesPageTwo } from '../../ducks/search-recipes-second';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { videoSearch } from '../../ducks/youtube';
@@ -12,7 +11,8 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [],
+      searchResultsOne: [],
+      searchResultsTwo: [],
       displayPrev: false,
       displayNext: true
     }
@@ -31,45 +31,36 @@ class SearchResults extends Component {
 
   // CALL FIRST PAGE OF RECIPES //
 
-    this.props.getRecipes(term).then((data) => {
-
-      let resultsArr = []
-
-      this.props.results.map((data, i) => {
-        return resultsArr.push(data);
-      })
+    this.props.getRecipes(term, 1).then((data) => {
 
       this.setState({
-        searchResults: resultsArr
+        searchResultsOne: data.value
       })
 
     })
 
   // CALL SECOND PAGE OF RECIPES //
 
-    this.props.getRecipesPageTwo(term)
+    this.props.getRecipes(term, 2).then((data) => {
+      this.setState({
+        searchResultsTwo: data.value
+      })
+    })
 
   // CALL YOUTUBE API //
+
     this.props.videoSearch(term + " recipe");
 
   }
 
   previousPage() {
 
-    let resultsArr = []
-
-    this.props.results.map((data, i) => {
-      return resultsArr.push(data);
-    })
+  document.body.scrollTop = 0;
 
     this.setState({
-      searchResults: resultsArr,
       displayPrev: false,
       displayNext: true
     })
-
-
-    document.body.scrollTop = 0;
 
     }
 
@@ -77,18 +68,7 @@ class SearchResults extends Component {
 
   document.body.scrollTop = 0;
 
-  const { term } = this.props.match.params;
-
-  // UPDATE RECIPE STATE ON "NEXT" //
-
-    let secondPageArr = []
-
-    this.props.pageTwo.map((data, i) => {
-      return secondPageArr.push(data);
-    })
-
     this.setState({
-      searchResults: secondPageArr,
       displayPrev: true,
       displayNext: false
     })
@@ -97,8 +77,18 @@ class SearchResults extends Component {
 
 render() {
 
+  let recipeArr = null
 
-  const Results = this.state.searchResults.map((data, i) => (
+  if (this.state.displayNext) {
+    recipeArr = this.state.searchResultsOne
+  }
+
+  if (this.state.displayPrev) {
+    recipeArr = this.state.searchResultsTwo
+  }
+
+
+  const results = recipeArr.map((data, i) => (
 
        <div className="results-list" key={i}>
        <Link id="results-link" to={`/recipe/${data.recipe_id}`}>
@@ -134,7 +124,7 @@ render() {
       <section className="search-results">
         <h1 id="results-main-title">Search Results for "{this.props.match.params.term}"</h1>
         <div className="results-contain">
-          {this.props.pageTwoLoading ? <Loading /> : Results}
+          {results}
         </div>
         <div className="previous-next-contain-results">
           {this.state.displayPrev ? <button className="previous-button" onClick={this.previousPage}>Previous</button> : null}
@@ -160,11 +150,9 @@ function mapStateToProps(state) {
   return {
     loading: state.recipesReducer.loading,
     results: state.recipesReducer.searchResults,
-    pageTwo: state.recipesSecondReducer.searchResultsSecond,
-    pageTwoLoading: state.recipesSecondReducer.loading,
     videos: state.youtubeReducer.videos,
     videoLoading: state.youtubeReducer.loading
   }
 }
 
-export default connect(mapStateToProps, {getRecipes, videoSearch, getRecipesPageTwo})(SearchResults);
+export default connect(mapStateToProps, {getRecipes, videoSearch})(SearchResults);

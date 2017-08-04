@@ -9,15 +9,8 @@ export const getTopRecipes = function(pageNum) {
   .then(res => {return res.data.recipes})
 }
 
-export const getRecipes = function(term) {
-  return axios.get(`https://community-food2fork.p.mashape.com/search?key=${API_KEY}&q=${term}`, {
-    "headers": MASHAPE_KEY
-  })
-  .then(res => {return res.data.recipes})
-}
-
-export const getRecipesPageTwo = function(term) {
-  return axios.get(`https://community-food2fork.p.mashape.com/search?key=${API_KEY}&q=${term}&page=2`, {
+export const getRecipes = function(term, pageNum) {
+  return axios.get(`https://community-food2fork.p.mashape.com/search?key=${API_KEY}&q=${term}&page=${pageNum}`, {
     "headers": MASHAPE_KEY
   })
   .then(res => {return res.data.recipes})

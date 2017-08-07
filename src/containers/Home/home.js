@@ -89,13 +89,12 @@ else {
 
 previousPage() {
 
+  document.body.scrollTop = 1000;
+
   this.setState({
     displayPrev: false,
     displayNext: true
   })
-
-
-  document.body.scrollTop = 1000;
 
 }
 
@@ -109,7 +108,6 @@ nextPage() {
       displayPrev: true,
       displayNext: false
     })
-
 }
 
 // RENDER JSX //
@@ -131,7 +129,7 @@ nextPage() {
     }
 
     const results = resultsArr.map((data, i) => (
-         <div className="trending-recipes-list" key={i}>
+         <div id="trending-recipes-list" key={i}>
          <Link id="results-link" to={`/recipe/${data.recipe_id}`}>
            <img id="trending-images" src={data.image_url} alt="N/A" />
             <h3 id="trending-recipes-titles">{data.title}</h3>
@@ -160,7 +158,7 @@ nextPage() {
           </div>
         </div>
           <h1 id="trending-title">Top Recipes</h1>
-          <div className="trending-recipes">
+          <div id="trending-recipes">
           {results}
         </div>
         <div className="previous-next-contain-home">

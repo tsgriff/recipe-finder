@@ -146,7 +146,7 @@ nextPage() {
       <section className="Home">
         <div className="Home-header">
           <img id="home-photo" src={homePhoto} alt="" />
-          <h1>Taylor and Claires <br /> Recipe Finder</h1>
+          <h1>Taylor and Claire's <br /> Recipe Finder</h1>
         </div>
         <div className="recipe-search">
           <div className="search-contain">

@@ -22,9 +22,9 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-export function videoSearch(term) {
+export function videoSearch(term, page) {
   return {
     type: GET_VIDEOS,
-    payload: videoimport.videoSearch(term)
+    payload: videoimport.videoSearch(term, page)
   }
 }

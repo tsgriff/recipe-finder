@@ -14,11 +14,19 @@ class SearchResults extends Component {
       searchResultsOne: [],
       searchResultsTwo: [],
       displayPrev: false,
-      displayNext: true
+      displayNext: false,
+      videoArr: [],
+      videoPrevToken: '',
+      videoNextToken: '',
+      youtubePrevious: false,
+      youtubeNext: true
     }
 
   this.previousPage = this.previousPage.bind(this);
   this.nextPage = this.nextPage.bind(this);
+
+  this.youtubePrevious = this.youtubePrevious.bind(this);
+  this.youtubeNext = this.youtubeNext.bind(this);
 
   }
 
@@ -45,11 +53,24 @@ class SearchResults extends Component {
       this.setState({
         searchResultsTwo: data.value
       })
+
+      if (this.state.searchResultsTwo.length > 0) {
+        this.setState({
+          displayNext: true
+        })
+
+      }
+
     })
 
   // CALL YOUTUBE API //
 
-    this.props.videoSearch(term + " recipe");
+    this.props.videoSearch(term + " recipe", '').then((data) => {
+      this.setState({
+        videoArr: data.value.items,
+        videoNextToken: data.value.nextPageToken
+      })
+    });
 
   }
 
@@ -75,18 +96,54 @@ class SearchResults extends Component {
 
 }
 
+// YOUTUBE SEARCH RESULTS BUTTONS //
+
+youtubePrevious() {
+
+  const { term } = this.props.match.params;
+
+  this.props.videoSearch(term + " recipe", this.state.videoPrevToken).then((data) => {
+
+    this.setState({
+      videoArr: data.value.items,
+      videoNextToken: data.value.nextPageToken,
+      videoPrevToken: data.value.prevPageToken
+    })
+  })
+
+  if (this.state.videoPrevToken === 'CAIQAQ') {
+    this.setState({
+      youtubePrevious: false
+    })
+  }
+
+}
+
+youtubeNext() {
+
+  const { term } = this.props.match.params;
+
+  this.props.videoSearch(term + " recipe", this.state.videoNextToken).then((data) => {
+
+    this.setState({
+      youtubePrevious: true,
+      videoArr: data.value.items,
+      videoNextToken: data.value.nextPageToken,
+      videoPrevToken: data.value.prevPageToken
+    })
+  })
+
+}
+
 render() {
 
   let recipeArr = null
 
-  if (this.state.displayNext) {
-    recipeArr = this.state.searchResultsOne
-  }
+  recipeArr = this.state.searchResultsOne
 
   if (this.state.displayPrev) {
     recipeArr = this.state.searchResultsTwo
   }
-
 
   const results = recipeArr.map((data, i) => (
 
@@ -100,10 +157,10 @@ render() {
      )
    )
 
-     const videoResults = this.props.videos.map((video, i) => (
+     const videoResults = this.state.videoArr.map((video, i) => (
        <div className="video-list" key={i}>
          <ul>
-           <li className="video-list-item">
+           <li id="video-list-item">
             <iframe className="iframe" allowFullScreen src={`https://www.youtube.com/embed/${video.id.videoId}`}></iframe>
             <h1>{video.snippet.title}</h1>
             <h2>By</h2>
@@ -114,7 +171,7 @@ render() {
        </div>
      ))
 
-     if (this.props.loading || this.props.videoLoading) {
+     if (this.props.loading) {
        return (<Loading />)
      }
 
@@ -137,7 +194,7 @@ render() {
           {videoResults}
         </div>
         <div className="previous-next-contain-youtube">
-          <button className="previous-button" onClick={this.youtubePrevious}>Previous</button>
+          {this.state.youtubePrevious ? <button className="previous-button" onClick={this.youtubePrevious}>Previous</button> : null}
           <button className="next-button" onClick={this.youtubeNext}>Next</button>
         </div>
       </section>

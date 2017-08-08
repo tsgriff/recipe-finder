@@ -10,8 +10,8 @@ class Nav extends Component {
           <ul id="nav-links">
             <Link className="link-text" to="/"><li>Home</li></Link>
             <Link className="link-text" to="/about"><li>About</li></Link>
-            <li>Profile</li>
-            <li>Login</li>
+            <Link className="link-text" to="/profile"><li>Profile</li></Link>
+            <a className="link-text" href="/auth"><li>Login</li></a>
           </ul>
         </div>
       </section>

@@ -1,0 +1,66 @@
+#profile-container {
+  width: 100%;
+  height: auto;
+  background-color: #f8dfba;
+  color: #421206;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-info {
+  text-align: center;
+  margin-top: 125px;
+}
+
+.profile-picture {
+  width: 40vw;
+  height: auto;
+  border-radius: 4%;
+  margin-bottom: 25px;
+}
+
+/* FAVORITE RECIPES */
+
+.favorite-recipes-contain {
+  height: 250px;
+  background-image: url('../../photos/cooking.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  margin-top: 100px;
+  margin-bottom: 75px;
+  color: #f8dfba;
+  font-size: 40px;
+}
+
+.favorite-recipes-title {
+  padding-top: 105px;
+  text-align: center;
+  padding-bottom: 85px;
+  letter-spacing: 4px;
+}
+
+/* FAVORITE VIDEOS */
+
+.favorite-videos-contain {
+  height: 250px;
+  background-image: url('../../photos/bbq.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  margin-top: 100px;
+  margin-bottom: 75px;
+  color: #f8dfba;
+  font-size: 40px;
+}
+
+
+.favorite-videos-title {
+  padding-top: 105px;
+  text-align: center;
+  padding-bottom: 85px;
+  letter-spacing: 4px;
+}

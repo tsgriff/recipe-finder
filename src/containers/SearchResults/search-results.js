@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { getRecipes } from '../../ducks/search-recipes';
+import { getUserInfo } from '../../ducks/user';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { videoSearch } from '../../ducks/youtube';
 import './search-results.css';
 import Loading from '../../components/Loading/loading';
+import { addToFavoriteVideos } from '../../services/favorite-video-service';
 
 
 class SearchResults extends Component {
@@ -73,7 +75,7 @@ class SearchResults extends Component {
     });
 
   }
-  
+
 
   previousPage() {
 
@@ -136,6 +138,12 @@ youtubeNext() {
 
 }
 
+
+addToFavoriteVideos(i) {
+  addToFavoriteVideos(this.props.userInfo.user_id, this.props.videos.items[i].id.videoId, this.props.videos.items[i].snippet.title, this.props.videos.items[i].snippet.channelTitle);
+
+}
+
 render() {
 
   let recipeArr = null
@@ -167,6 +175,7 @@ render() {
             <h2>By</h2>
             <h2>{video.snippet.channelTitle}</h2>
             <h3 className="video-description">{video.snippet.description}</h3>
+            <button onClick={() => {this.addToFavoriteVideos(i)}}>Favorite</button>
            </li>
          </ul>
        </div>
@@ -209,8 +218,9 @@ function mapStateToProps(state) {
     loading: state.recipesReducer.loading,
     results: state.recipesReducer.searchResults,
     videos: state.youtubeReducer.videos,
-    videoLoading: state.youtubeReducer.loading
+    videoLoading: state.youtubeReducer.loading,
+    userInfo: state.userReducer.userData
   }
 }
 
-export default connect(mapStateToProps, {getRecipes, videoSearch})(SearchResults);
+export default connect(mapStateToProps, {getRecipes, videoSearch, addToFavoriteVideos, getUserInfo})(SearchResults);

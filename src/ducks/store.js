@@ -6,6 +6,7 @@ import detailsReducer from './get-details';
 import youtubeReducer from './youtube';
 import userReducer from './user';
 import favoriteRecipesReducer from './favorite-recipes';
+import favoriteVideosReducer from './favorite-videos';
 
 
 const reducer = combineReducers({
@@ -14,7 +15,8 @@ const reducer = combineReducers({
   detailsReducer: detailsReducer,
   youtubeReducer: youtubeReducer,
   userReducer: userReducer,
-  favoriteRecipesReducer: favoriteRecipesReducer
+  favoriteRecipesReducer: favoriteRecipesReducer,
+  favoriteVideosReducer: favoriteVideosReducer
 })
 
 export default createStore(

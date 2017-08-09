@@ -20,6 +20,10 @@
   margin-bottom: 25px;
 }
 
+.welcome-message {
+  font-size: 30px;
+}
+
 /* FAVORITE RECIPES */
 
 .favorite-recipes-title-contain {
@@ -29,7 +33,7 @@
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  margin-top: 100px;
+  margin-top: 80px;
   margin-bottom: 75px;
   color: #f8dfba;
   font-size: 40px;
@@ -76,6 +80,10 @@
 
 #remove-recipe-from-favorites:active {
   transform: translateY(2px);
+}
+
+#results-link:hover {
+  opacity: 0.65;
 }
 
 /* FAVORITE VIDEOS */

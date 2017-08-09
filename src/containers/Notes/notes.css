@@ -1,0 +1,44 @@
+#notes {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#notes-input {
+  width: 500px;
+  height: 100px;
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+}
+
+#notes-button-contain {
+  text-align: center;
+}
+
+#notes-button {
+  margin-top: 25px;
+  text-align: center;
+  width: 125px;
+  height: 35px;
+  outline: none;
+  border: none;
+  background-color: #421206;
+  color: #f8dfba;
+  cursor: pointer;
+}
+
+#notes-button:hover {
+  opacity: 0.85;
+}
+
+#notes-button:active {
+  transform: translateY(2px);
+}
+
+#notes-contain {
+  text-align: center;
+  margin-top: 25px;
+}

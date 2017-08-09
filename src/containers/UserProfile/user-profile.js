@@ -66,7 +66,7 @@ const favoriteRecipes = this.state.favorites.map((data, i) => (
   <div className="fav-recipes-contain">
     <div className="fav-recipes-items" key={i}>
       <Link id="results-link" to={`/recipe/${data.recipe_id}`}>
-        <img id="fav-recipe-photo" src={data.photo} />
+        <img id="fav-recipe-photo" src={data.photo} alt="" />
         <h2 id="fav-recipe-title">{data.title}</h2>
       </Link>
       <button id="remove-recipe-from-favorites" onClick={() => {this.removeFromFavoriteRecipes(i)}}>Remove</button>
@@ -79,7 +79,7 @@ const favoriteVideos = this.state.videos.map((video, i) => (
   <div className="video-list" key={i}>
     <ul>
       <li id="video-list-item">
-        <iframe className="iframe" allowFullScreen src={`https://www.youtube.com/embed/${video.video_id}`}></iframe>
+        <iframe title="favorite-video" className="iframe" allowFullScreen src={`https://www.youtube.com/embed/${video.video_id}`}></iframe>
         <h1>{video.title}</h1>
         <h2>By</h2>
         <h2>{video.channel}</h2>
@@ -93,7 +93,7 @@ const favoriteVideos = this.state.videos.map((video, i) => (
     <section id="profile-container">
       <div className="user-contain">
         <div className="user-info">
-          <div className="profile-pic-contain"><img className="profile-picture" src={this.props.userInfo.photo} /></div>
+          <div className="profile-pic-contain"><img className="profile-picture" src={this.props.userInfo.photo} alt="" /></div>
           <h1 className="welcome-message">{this.props.userInfo ? 'Hello, ' + this.props.userInfo.user_first_name + ' ' + this.props.userInfo.user_last_name + '!' : "User info not found"}</h1>
         </div>
       </div>

@@ -100,6 +100,22 @@
   transform: translateY(2px);
 }
 
+#add-vid-to-favs {
+  margin-top: 25px;
+  width: 85px;
+  height: 30px;
+  outline: none;
+  border: none;
+  background-color: #421206;
+  color: #f8dfba;
+  cursor: pointer;
+}
+
+#add-vid-to-favs:active {
+  transform: translateY(2px);
+
+}
+
 /* VIDEOS */
 
 #video-section-title-contain {

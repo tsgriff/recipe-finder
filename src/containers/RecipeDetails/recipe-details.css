@@ -10,17 +10,16 @@
 }
 
 .details-header {
-  padding-top: 100px;
   text-align: center;
   font-size: 30px;
 }
 
 #recipe-image {
-  margin-top: 50px;
-  width: 50vw;
+  width: 50%;
   height: auto;
-  border: 4px solid #421206;
-  border-radius: 5%;
+  margin-bottom: 50px;
+  border-radius: 50%;
+  padding-top: 100px;
 }
 
 .social-ranking {
@@ -30,9 +29,20 @@
   font-weight: normal;
 }
 
+#ingredients-and-directions-contain {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+/* INGREDIENTS */
+
 #ingredients-list {
   text-align: center;
   margin-top: 25px;
+  width: 40%;
+
 }
 
 #ingredients-title {
@@ -42,11 +52,15 @@
 .ingredients {
   font-size: 30px;
   margin: 5px;
+  list-style: none;
 }
+
+/* DIRECTIONS */
 
 #directions {
   text-align: center;
   margin-top: 25px;
+  width: 40%;
 }
 
 #directions-title {
@@ -59,4 +73,54 @@
   font-weight: normal;
   font-size: 30px;
   margin: 5px;
+}
+
+#add-to-favs-contain {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#add-to-favs {
+  margin-top: 25px;
+  width: 125px;
+  height: 35px;
+  outline: none;
+  border: none;
+  background-color: #421206;
+  color: #f8dfba;
+  cursor: pointer;
+}
+
+#add-to-favs:hover {
+  opacity: 0.85;
+}
+
+
+#add-to-favs:active {
+  transform: translateY(2px);
+}
+
+/* NOTES */
+
+.notes-divider {
+  color: #421206;
+  width: 100%;
+  height: 250px;
+  background-image: url('../../photos/notes.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  margin-top: 100px;
+  margin-bottom: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#notes-title {
+  text-align: center;
+  font-size: 75px;
+  letter-spacing: 4px;
 }

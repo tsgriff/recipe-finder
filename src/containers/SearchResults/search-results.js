@@ -170,12 +170,12 @@ render() {
        <div className="video-list" key={i}>
          <ul>
            <li id="video-list-item">
-            <iframe className="iframe" allowFullScreen src={`https://www.youtube.com/embed/${video.id.videoId}`}></iframe>
+            <iframe title="video-search-results" className="iframe" allowFullScreen src={`https://www.youtube.com/embed/${video.id.videoId}`}></iframe>
             <h1>{video.snippet.title}</h1>
             <h2>By</h2>
             <h2>{video.snippet.channelTitle}</h2>
             <h3 className="video-description">{video.snippet.description}</h3>
-            <button onClick={() => {this.addToFavoriteVideos(i)}}>Favorite</button>
+            <button id="add-vid-to-favs" onClick={() => {this.addToFavoriteVideos(i)}}>Favorite</button>
            </li>
          </ul>
        </div>

@@ -5,6 +5,7 @@ import { addToFavoriteRecipes } from '../../services/favorite-recipe-service';
 import { connect } from 'react-redux';
 import './recipe-details.css';
 import Loading from '../../components/Loading/loading';
+import Notes from '../Notes/notes';
 
 
 
@@ -72,21 +73,27 @@ render() {
   return (
     <section id="recipe-details">
       <div className="details-header">
-        <h1 id="recipe-title">{this.props.details.title}</h1>
         <img id="recipe-image" src={this.props.details.image_url} alt="" />
+        <h1 id="recipe-title">{this.props.details.title}</h1>
       </div>
       <div className="social-ranking">
         <h1>Social Ranking: {Math.round(this.props.details.social_rank)}</h1>
       </div>
-      <button onClick={this.addToFavoriteRecipes}>Favorite</button>
-      <div id="ingredients-list">
-        <h1 id="ingredients-title">Ingredients</h1>
-        {Ingredients}
+      <div id="add-to-favs-contain"><button id="add-to-favs" onClick={this.addToFavoriteRecipes}>Favorite</button></div>
+      <div id="ingredients-and-directions-contain">
+        <div id="ingredients-list">
+          <h1 id="ingredients-title">Ingredients</h1>
+          {Ingredients}
+        </div>
+        <div id="directions">
+          <h1 id="directions-title">Directions</h1>
+          <h1><a id="recipe-source-referral" href={this.props.details.source_url} target="_blank" rel="noopener noreferrer">Click here for cooking directions from {this.props.details.publisher}</a></h1>
+        </div>
       </div>
-      <div id="directions">
-        <h1 id="directions-title">Directions</h1>
-        <h1><a id="recipe-source-referral" href={this.props.details.source_url} target="_blank" rel="noopener noreferrer">Click here for cooking directions from {this.props.details.publisher}</a></h1>
+      <div className="notes-divider">
+        <h1 id="notes-title">Notes</h1>
       </div>
+      <Notes />
     </section>
   )
 }

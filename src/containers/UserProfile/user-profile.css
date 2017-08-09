@@ -22,7 +22,7 @@
 
 /* FAVORITE RECIPES */
 
-.favorite-recipes-contain {
+.favorite-recipes-title-contain {
   height: 250px;
   background-image: url('../../photos/cooking.jpg');
   background-repeat: no-repeat;
@@ -40,6 +40,42 @@
   text-align: center;
   padding-bottom: 85px;
   letter-spacing: 4px;
+}
+
+.favorite-contain {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.fav-recipes-items {
+  margin: 25px;
+  text-align: center;
+}
+
+#fav-recipe-photo {
+  width: 350px;
+  height: auto;
+}
+
+#fav-recipe-title {
+  width: 350px;
+  height: auto;
+}
+
+#remove-recipe-from-favorites {
+  margin-top: 25px;
+  width: 85px;
+  height: 30px;
+  outline: none;
+  border: none;
+  background-color: #421206;
+  color: #f8dfba;
+  cursor: pointer;
+}
+
+#remove-recipe-from-favorites:active {
+  transform: translateY(2px);
 }
 
 /* FAVORITE VIDEOS */

@@ -65,6 +65,22 @@ const userCtrl = require('./controllers/userCtrl')
 
 app.get('/me', userCtrl.me)
 
+// CONTROLLER //
+
+const favoritesCtrl = require('./controllers/favoritesCtrl')
+
+// GET //
+
+app.get('/api/favorite_recipes/:user_id', favoritesCtrl.getFavoriteRecipes)
+
+// POST //
+
+app.post('/api/favorite_recipes', favoritesCtrl.addToFavoriteRecipes)
+
+// DELETE //
+
+app.delete('/api/favorite_recipes/:user_id/:recipe_id', favoritesCtrl.removeFromFavoriteRecipes)
+
 
 // LISTEN/PORT //
 

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { getDetails } from '../../ducks/get-details';
+import { getUserInfo } from '../../ducks/user';
+import { addToFavoriteRecipes } from '../../services/favorite-recipe-service';
 import { connect } from 'react-redux';
 import './recipe-details.css';
 import Loading from '../../components/Loading/loading';
+
 
 
 class RecipeDetails extends Component {
@@ -12,6 +15,7 @@ class RecipeDetails extends Component {
     this.state = {
       ingredients: []
     }
+    this.addToFavoriteRecipes = this.addToFavoriteRecipes.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +39,15 @@ class RecipeDetails extends Component {
       ingredients: ingredientsArr
     })
   })
+}
+
+addToFavoriteRecipes(event) {
+  event.preventDefault();
+
+  let { id } = this.props.match.params;
+
+  addToFavoriteRecipes(this.props.userInfo.user_id, id, this.props.details.title, this.props.details.image_url);
+
 }
 
 
@@ -65,6 +78,7 @@ render() {
       <div className="social-ranking">
         <h1>Social Ranking: {Math.round(this.props.details.social_rank)}</h1>
       </div>
+      <button onClick={this.addToFavoriteRecipes}>Favorite</button>
       <div id="ingredients-list">
         <h1 id="ingredients-title">Ingredients</h1>
         {Ingredients}
@@ -82,9 +96,10 @@ render() {
 
 function mapStateToProps(state) {
   return {
+    userInfo: state.userReducer.userData,
     loading: state.detailsReducer.loading,
     details: state.detailsReducer.recipeDetails
   }
 }
 
-export default connect(mapStateToProps, {getDetails})(RecipeDetails);
+export default connect(mapStateToProps, {getDetails, addToFavoriteRecipes, getUserInfo})(RecipeDetails);

@@ -73,6 +73,7 @@ class SearchResults extends Component {
     });
 
   }
+  
 
   previousPage() {
 

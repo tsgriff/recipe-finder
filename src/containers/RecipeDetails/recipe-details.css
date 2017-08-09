@@ -15,11 +15,11 @@
 }
 
 #recipe-image {
-  width: 50%;
+  width: 40%;
   height: auto;
   margin-bottom: 50px;
-  border-radius: 50%;
-  padding-top: 100px;
+  border-radius: 5%;
+  margin-top: 100px;
 }
 
 .social-ranking {

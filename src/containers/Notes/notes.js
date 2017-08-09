@@ -22,7 +22,7 @@ class Notes extends Component {
     return (
       <section id="notes">
         <div id="notes-contain"><h1>{this.state.notes}</h1>
-          <textarea id="notes-input" onChange={this.handleNotes}></textarea>
+          <textarea id="notes-input" placeholder="Save directions, modify ingredients and/or instructions, etc." onChange={this.handleNotes}></textarea>
         </div>
         <div id="notes-button-contain">
           <button id="notes-button">Submit</button>

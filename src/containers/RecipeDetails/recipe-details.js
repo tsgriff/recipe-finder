@@ -87,7 +87,7 @@ render() {
         </div>
         <div id="directions">
           <h1 id="directions-title">Directions</h1>
-          <h1><a id="recipe-source-referral" href={this.props.details.source_url} target="_blank" rel="noopener noreferrer">Click here for cooking directions from {this.props.details.publisher}</a></h1>
+          <h1><a id="recipe-source-referral" href={this.props.details.source_url} target="_blank" rel="noopener noreferrer">Click here for cooking directions from {this.props.details.publisher} and store them below.</a></h1>
         </div>
       </div>
       <div className="notes-divider">

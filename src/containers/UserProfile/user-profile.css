@@ -1,6 +1,6 @@
 #profile-container {
   width: 100%;
-  height: auto;
+  height: 100vh;
   background-color: #f8dfba;
   color: #421206;
   display: flex;

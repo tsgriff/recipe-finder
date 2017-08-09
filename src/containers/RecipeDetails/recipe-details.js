@@ -5,7 +5,10 @@ import { addToFavoriteRecipes } from '../../services/favorite-recipe-service';
 import { connect } from 'react-redux';
 import './recipe-details.css';
 import Loading from '../../components/Loading/loading';
-import Notes from '../Notes/notes';
+
+// NOTES //
+import { addNote } from '../../services/notes-service';
+import {  } from '../../services/notes-service';
 
 
 
@@ -14,9 +17,15 @@ class RecipeDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ingredients: []
+      ingredients: [],
+      notes: ''
     }
+
     this.addToFavoriteRecipes = this.addToFavoriteRecipes.bind(this);
+
+    this.handleNotes = this.handleNotes.bind(this);
+    this.storeNotes = this.storeNotes.bind(this);
+
   }
 
   componentDidMount() {
@@ -49,6 +58,27 @@ addToFavoriteRecipes(event) {
 
   addToFavoriteRecipes(this.props.userInfo.user_id, id, this.props.details.title, this.props.details.image_url);
 
+}
+
+
+handleNotes(event) {
+  this.setState({
+    notes: event.target.value,
+  })
+}
+
+storeNotes(event) {
+  event.preventDefault();
+
+  let { id } = this.props.match.params;
+
+  if (this.state.notes) {
+    addNote(this.props.userInfo.user_id, id, this.state.notes)
+  }
+
+  else {
+    alert('Please enter notes')
+  }
 }
 
 
@@ -93,7 +123,14 @@ render() {
       <div className="notes-divider">
         <h1 id="notes-title">Notes</h1>
       </div>
-      <Notes />
+      <section id="notes">
+        <div id="notes-contain"><h1>{this.state.notes}</h1>
+          <textarea id="notes-input" placeholder="Save directions, modify ingredients and/or instructions, etc." onChange={this.handleNotes}></textarea>
+        </div>
+        <div id="notes-button-contain">
+          <button id="notes-button" onClick={this.storeNotes}>Submit</button>
+        </div>
+      </section>
     </section>
   )
 }

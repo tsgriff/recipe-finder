@@ -33,6 +33,8 @@ class UserProfile extends Component {
 
   componentDidMount() {
 
+  this.props.getUserInfo()
+
     this.props.getUserInfo().then(() => {
       this.props.getFavoriteRecipes(this.props.userInfo.user_id).then(() => {
         this.setState({favorites: this.props.favRecipes});

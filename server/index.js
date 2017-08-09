@@ -32,14 +32,15 @@ app.use(cors())
 passport.use(new Auth0Strategy(config_server.authPass, function(accessToken, refreshToken, extraParams, profile, done) {
     db.getUsers([profile.emails[0].value], function(err, user) {
       if (!user[0]) {
-        console.log('creating user');
+
         db.storeUser([profile.name.givenName, profile.name.familyName, profile.emails[0].value, profile._json.picture_large], function(err, user) {
-          console.log('user created', user)
+            db.getUsers([profile.emails[0].value], function(err, user) {
+              return done(err, user)
+            })
         })
-        return done(err, user)
       }
+
       else {
-        console.log('found user', user);
         return done(err, user);
       }
     })
@@ -69,24 +70,29 @@ app.get('/me', userCtrl.me)
 
 const favoritesCtrl = require('./controllers/favoritesCtrl')
 const favoriteVideosCtrl = require('./controllers/favoriteVideosCtrl')
+const notesCtrl = require('./controllers/notesCtrl')
 
 
 // GET //
 
 app.get('/api/favorite_recipes/:user_id', favoritesCtrl.getFavoriteRecipes)
 app.get('/api/favorite_videos/:user_id', favoriteVideosCtrl.getFavoriteVideos)
+app.get('/api/notes/:user_id/:recipe_id', notesCtrl.getNotes)
 
 
 // POST //
 
 app.post('/api/favorite_recipes', favoritesCtrl.addToFavoriteRecipes)
 app.post('/api/favorite_videos', favoriteVideosCtrl.addToFavoriteVideos)
+app.post('/api/notes', notesCtrl.addNote)
 
 
 // DELETE //
 
 app.delete('/api/favorite_recipes/:user_id/:recipe_id', favoritesCtrl.removeFromFavoriteRecipes)
 app.delete('/api/favorite_videos/:user_id/:video_id', favoriteVideosCtrl.removeFromFavoriteVideos)
+app.delete('/api/notes/:user_id/:recipe_id/:notes', notesCtrl.removeNote)
+
 
 
 // LISTEN/PORT //

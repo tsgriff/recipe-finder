@@ -108,3 +108,18 @@
   padding-bottom: 85px;
   letter-spacing: 4px;
 }
+
+#remove-video-from-favorites {
+  margin-top: 25px;
+  width: 85px;
+  height: 30px;
+  outline: none;
+  border: none;
+  background-color: #421206;
+  color: #f8dfba;
+  cursor: pointer;
+}
+
+#remove-video-from-favorites:active {
+  transform: translateY(2px);
+}

@@ -1,0 +1,51 @@
+#about-contain {
+  width: 100%;
+  height: auto;
+  background-color: #f8dfba;
+  font-family: 'EB Garamond', serif;
+  color: #421206;
+  font-weight: bold;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#about-title {
+  margin-bottom: 25px;
+  font-size: 36px;
+  padding-top: 100px;
+}
+
+#about-description {
+  text-align: left;
+  width: 65%;
+  margin-bottom: 75px;
+}
+
+#tech-used-title {
+  margin-bottom: 10px;
+  font-size: 36px;
+}
+
+#tech-list {
+  list-style: none;
+  margin-bottom: 25px;
+}
+
+#api-list-title {
+  margin-bottom: 10px;
+  font-size: 36px;
+}
+
+#api-list {
+  list-style: none;
+  margin-bottom: 50px;
+  text-decoration: none;
+}
+
+#api-list a {
+  text-decoration: none;
+  color: #421206;
+}

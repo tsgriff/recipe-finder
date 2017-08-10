@@ -33,6 +33,9 @@ class UserProfile extends Component {
 
   componentDidMount() {
 
+  document.body.scrollTop = 0;
+
+
   this.props.getUserInfo()
 
     this.props.getUserInfo().then(() => {

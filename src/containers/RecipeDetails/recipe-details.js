@@ -7,8 +7,8 @@ import './recipe-details.css';
 import Loading from '../../components/Loading/loading';
 
 // NOTES //
-import { addNote } from '../../services/notes-service';
-import {  } from '../../services/notes-service';
+import { addNote, removeNote } from '../../services/notes-service';
+import { getNotes } from '../../ducks/notes';
 
 
 
@@ -18,7 +18,8 @@ class RecipeDetails extends Component {
     super(props);
     this.state = {
       ingredients: [],
-      notes: ''
+      notes: '',
+      notesList: []
     }
 
     this.addToFavoriteRecipes = this.addToFavoriteRecipes.bind(this);
@@ -29,6 +30,7 @@ class RecipeDetails extends Component {
   }
 
   componentDidMount() {
+
     document.body.scrollTop = 0;
 
     // API CALL WITH RECIPE ID AS PARAMETER//
@@ -49,7 +51,19 @@ class RecipeDetails extends Component {
       ingredients: ingredientsArr
     })
   })
+
+  // GET NOTES //
+
+  this.props.getUserInfo().then(() => {
+    let { id } = this.props.match.params;
+    this.props.getNotes(this.props.userInfo.user_id, id).then(() => {
+      this.setState({notesList: this.props.notes})
+    })
+  })
+
 }
+
+// ADD FAVORITE RECIPE //
 
 addToFavoriteRecipes(event) {
   event.preventDefault();
@@ -68,18 +82,37 @@ handleNotes(event) {
 }
 
 storeNotes(event) {
-  event.preventDefault();
+
+event.preventDefault();
+
+if (this.state.notes) {
 
   let { id } = this.props.match.params;
 
-  if (this.state.notes) {
-    addNote(this.props.userInfo.user_id, id, this.state.notes)
-  }
+  addNote(this.props.userInfo.user_id, id, this.state.notes).then(() => {
+        this.props.getNotes(this.props.userInfo.user_id, id).then(() => {
+          this.setState({notesList: this.props.notes});
+      })
+  })
+}
 
   else {
     alert('Please enter notes')
   }
 }
+
+// REMOVE NOTES //
+
+  removeNote(i) {
+
+    let { id } = this.props.match.params;
+
+    removeNote(this.props.userInfo.user_id, id, this.state.notesList[i].note_id);
+    this.setState({notesList: [...this.state.notesList.slice(0, i), ...this.state.notesList.slice(i+1)]})
+
+console.log("PARAMS, ", this.props.userInfo.user_id, id, this.state.notesList[i].note_id);
+
+  }
 
 
 render() {
@@ -97,6 +130,17 @@ render() {
             {data}
           </li>
         </ul>
+      )
+    })
+
+    const notes = this.state.notesList.map((note, i) => {
+      return (
+        <div id="notes-list-contain">
+        <li key={i} className="notes-list">
+          {note.notes}
+          <button id="remove-note" onClick={() => {this.removeNote(i)}}>X</button>
+        </li>
+        </div>
       )
     })
 
@@ -124,7 +168,7 @@ render() {
         <h1 id="notes-title">Notes</h1>
       </div>
       <section id="notes">
-        <div id="notes-contain"><h1>{this.state.notes}</h1>
+        <div id="notes-contain"><h1 id="note-item-text"><ul>{notes}</ul></h1>
           <textarea id="notes-input" placeholder="Save directions, modify ingredients and/or instructions, etc." onChange={this.handleNotes}></textarea>
         </div>
         <div id="notes-button-contain">
@@ -142,8 +186,9 @@ function mapStateToProps(state) {
   return {
     userInfo: state.userReducer.userData,
     loading: state.detailsReducer.loading,
-    details: state.detailsReducer.recipeDetails
+    details: state.detailsReducer.recipeDetails,
+    notes: state.notesReducer.notes
   }
 }
 
-export default connect(mapStateToProps, {getDetails, addToFavoriteRecipes, getUserInfo})(RecipeDetails);
+export default connect(mapStateToProps, {getDetails, addToFavoriteRecipes, getUserInfo, getNotes})(RecipeDetails);

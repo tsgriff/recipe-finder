@@ -13,7 +13,7 @@ exports.addNote = (req, res) => {
 }
 
 exports.removeNote = (req, res) => {
-  db.removeNote([req.params.user_id, req.params.recipe_id, req.params.notes], (err, response) => {
+  db.removeNote([req.params.user_id, req.params.recipe_id, req.params.note_id], (err, response) => {
     if (err) {
       console.log(err)
     }
@@ -26,7 +26,6 @@ exports.getNotes = (req, res) => {
     if (err) {
       console.log(err)
     }
-    console.log(response);
     res.status(200).send(response);
   })
 }

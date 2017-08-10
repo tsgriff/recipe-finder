@@ -31,7 +31,7 @@
 
 #ingredients-and-directions-contain {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   justify-content: center;
   margin-top: 25px;
 }
@@ -50,7 +50,8 @@
 }
 
 .ingredients {
-  font-size: 30px;
+  font-size: 22px;
+  font-weight: bold;
   margin: 5px;
   list-style: none;
 }
@@ -70,8 +71,8 @@
 #recipe-source-referral {
   text-decoration: none;
   color: #421206;
-  font-weight: normal;
-  font-size: 30px;
+  font-weight: bold;
+  font-size: 22px;
   margin: 5px;
 }
 
@@ -134,7 +135,7 @@
 }
 
 #notes-input {
-  width: 500px;
+  width: 40vw;
   height: 100px;
   outline: none;
   font-size: 16px;
@@ -164,6 +165,43 @@
 }
 
 #notes-contain {
-  text-align: center;
   margin-top: 25px;
+  margin-bottom: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#note-item-text {
+  margin-bottom: 50px;
+  font-size: 22px;
+}
+
+.notes-list {
+  margin: 8px;
+  width: 75%;
+}
+
+#notes-list-contain {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+
+#remove-note {
+  margin-left: 10px;
+  width: 25px;
+  height: 25px;
+  outline: none;
+  border: none;
+  background-color: #421206;
+  color: #f8dfba;
+  cursor: pointer;
+}
+
+#remove-note:active {
+  transform: translateY(2px);
 }

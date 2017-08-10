@@ -27,7 +27,6 @@ exports.getFavoriteRecipes = (req, res) => {
     if (err) {
       console.log(err)
     }
-    console.log(response);
     res.status(200).send(response);
   })
 }

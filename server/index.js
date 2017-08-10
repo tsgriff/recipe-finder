@@ -91,7 +91,7 @@ app.post('/api/notes', notesCtrl.addNote)
 
 app.delete('/api/favorite_recipes/:user_id/:recipe_id', favoritesCtrl.removeFromFavoriteRecipes)
 app.delete('/api/favorite_videos/:user_id/:video_id', favoriteVideosCtrl.removeFromFavoriteVideos)
-app.delete('/api/notes/:user_id/:recipe_id/:notes', notesCtrl.removeNote)
+app.delete('/api/notes/:user_id/:recipe_id/:note_id', notesCtrl.removeNote)
 
 
 

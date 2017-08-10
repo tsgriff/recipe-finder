@@ -104,7 +104,7 @@ const favoriteVideos = this.state.videos.map((video, i) => (
         <div className="favorite-recipes-title"><h1>Favorite Recipes</h1></div>
       </div>
       <div className="favorite-contain"> {favoriteRecipes} </div></div>
-      : null}
+      : <div id="profile-space-placeholder">Favorite recipes and videos and view them here.</div>}
 
       {this.state.videos.length > 0 ? <div>
         <div className="favorite-videos-contain">

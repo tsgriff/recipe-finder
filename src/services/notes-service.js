@@ -13,8 +13,8 @@ export const getNotes = function(user_id, recipe_id) {
   .then(res => {return res.data})
 }
 
-export const removeNote = function(user_id, recipe_id, notes) {
-  return axios.delete(`/api/notes/${user_id}/${recipe_id}/${notes}`, {
+export const removeNote = function(user_id, recipe_id, note_id) {
+  return axios.delete(`/api/notes/${user_id}/${recipe_id}/${note_id}`, {
   })
   .then(res => {return res.data})
 }

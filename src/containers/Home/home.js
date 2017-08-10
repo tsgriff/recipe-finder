@@ -114,6 +114,24 @@ nextPage() {
 
   render() {
 
+    const filter = (str) => {
+
+      const obj = {
+      '&amp;': "and",
+      '&#8217;': '\'',
+      '&#174;': '',
+      '&rsquo;': '',
+      '&nbsp;': ''
+      }
+
+    let filtered = str.replace(/&amp;|&#8217;|&#174;|&rsquo;|&nbsp;/gi, function(matched) {
+      return obj[matched];
+    });
+
+    return filtered
+
+  }
+
     if (this.state.shouldRedirect) {
       return <Redirect to={`/recipes/${this.state.searchTerm}`} />
     }
@@ -132,7 +150,7 @@ nextPage() {
          <div id="trending-recipes-list" key={i}>
          <Link id="results-link" to={`/recipe/${data.recipe_id}`}>
            <img id="trending-images" src={data.image_url} alt="N/A" />
-            <h3 id="trending-recipes-titles">{data.title}</h3>
+            <h3 id="trending-recipes-titles">{filter(data.title)}</h3>
             <h3 id="results-rating">Rating: {Math.round(data.social_rank)}</h3>
           </Link>
          </div>

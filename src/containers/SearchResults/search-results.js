@@ -52,6 +52,7 @@ class SearchResults extends Component {
   // CALL SECOND PAGE OF RECIPES //
 
     this.props.getRecipes(term, 2).then((data) => {
+
       this.setState({
         searchResultsTwo: data.value
       })
@@ -64,6 +65,7 @@ class SearchResults extends Component {
       }
 
     })
+
 
   // CALL YOUTUBE API //
 
@@ -154,12 +156,31 @@ render() {
     recipeArr = this.state.searchResultsTwo
   }
 
+  const filter = (str) => {
+
+    const obj = {
+    '&amp;': "and",
+    '&#8217;': '\'',
+    '&#174;': '',
+    '&rsquo;': '',
+    '&nbsp;': ''
+    }
+
+  let filtered = str.replace(/&amp;|&#8217;|&#174;|&rsquo;|&nbsp;/gi, function(matched) {
+    return obj[matched];
+  });
+
+  return filtered
+
+}
+
+
   const results = recipeArr.map((data, i) => (
 
        <div className="results-list" key={i}>
        <Link id="results-link" to={`/recipe/${data.recipe_id}`}>
          <img id="results-images" src={data.image_url} alt="N/A" />
-          <h3 id="results-titles">{data.title}</h3>
+          <h3 id="results-titles">{filter(data.title)}</h3>
           <h3 id="results-rating">Rating: {Math.round(data.social_rank)}</h3>
         </Link>
        </div>

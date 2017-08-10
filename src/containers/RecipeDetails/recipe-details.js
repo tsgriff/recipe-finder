@@ -74,7 +74,6 @@ addToFavoriteRecipes(event) {
 
 }
 
-
 handleNotes(event) {
   this.setState({
     notes: event.target.value,
@@ -110,18 +109,18 @@ if (this.state.notes) {
     removeNote(this.props.userInfo.user_id, id, this.state.notesList[i].note_id);
     this.setState({notesList: [...this.state.notesList.slice(0, i), ...this.state.notesList.slice(i+1)]})
 
-console.log("PARAMS, ", this.props.userInfo.user_id, id, this.state.notesList[i].note_id);
-
   }
 
 
 render() {
+
 
   if (this.props.loading) {
     return (<Loading />)
   }
 
   else {
+
 
     const Ingredients = this.state.ingredients.map((data, i) => {
       return (
@@ -144,11 +143,29 @@ render() {
       )
     })
 
+    const filter = (str) => {
+
+      const obj = {
+      '&amp;': "and",
+      '&#8217;': '\'',
+      '&#174;': '',
+      '&rsquo;': '',
+      '&nbsp;': ''
+      }
+
+    let filtered = str.replace(/&amp;|&#8217;|&#174;|&rsquo;|&nbsp;/gi, function(matched) {
+      return obj[matched];
+    });
+
+    return filtered
+
+  }
+
   return (
     <section id="recipe-details">
       <div className="details-header">
         <img id="recipe-image" src={this.props.details.image_url} alt="" />
-        <h1 id="recipe-title">{this.props.details.title}</h1>
+        <h1 id="recipe-title">{this.props.details.title ? filter(this.props.details.title) : null}</h1>
       </div>
       <div className="social-ranking">
         <h1>Social Ranking: {Math.round(this.props.details.social_rank)}</h1>

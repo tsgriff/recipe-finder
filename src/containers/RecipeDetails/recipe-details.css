@@ -205,3 +205,33 @@
 #remove-note:active {
   transform: translateY(2px);
 }
+
+@media(max-width: 500px) {
+  #recipe-image {
+    width: 315px;
+  }
+
+  #ingredients-and-directions-contain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #notes-input {
+    width: 300px;
+  }
+
+  #ingredients-list {
+    width: 300px;
+  }
+
+  .ingredients {
+    margin: 10px;
+    list-style: circle;
+  }
+
+  #directions {
+    width: 400px;
+  }
+
+}

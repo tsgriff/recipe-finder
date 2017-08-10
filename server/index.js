@@ -66,6 +66,11 @@ const userCtrl = require('./controllers/userCtrl')
 
 app.get('/me', userCtrl.me)
 
+app.get('/auth/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+})
+
 // CONTROLLERS //
 
 const favoritesCtrl = require('./controllers/favoritesCtrl')

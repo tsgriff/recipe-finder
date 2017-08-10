@@ -166,3 +166,14 @@
 .video-description {
   margin-top: 25px;
 }
+
+@media(max-width: 500px) {
+  .iframe {
+    width: 315px;
+    height: 190px;
+  }
+
+  #video-list-item {
+    width: 315px;
+  }
+}

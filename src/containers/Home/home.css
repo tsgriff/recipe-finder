@@ -29,10 +29,14 @@
 }
 
 @media(max-width: 500px) {
+  #home-photo {
+    width: 300px;
+  }
   .Home-header {
-    font-size: 40px;
-    height: 110vh;
-    padding-top: 25px;
+    font-size: 30px;
+    height: 75vh;
+    padding-top: 75px;
+    padding-bottom: 50px;
   }
 }
 

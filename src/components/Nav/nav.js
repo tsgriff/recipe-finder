@@ -11,7 +11,6 @@ class Nav extends Component {
 
   componentDidMount() {
     this.props.getUserInfo()
-    console.log(this.props.userInfo);
   }
 
   render() {

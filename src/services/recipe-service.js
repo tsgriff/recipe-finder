@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {API_KEY} from '../../server/config_server.js'
-import {MASHAPE_KEY} from '../../server/config_server.js'
+import {API_KEY} from '../config_server.js'
+import {MASHAPE_KEY} from '../config_server.js'
 
 export const getTopRecipes = function(pageNum) {
   return axios.get(`https://community-food2fork.p.mashape.com/search?key=${API_KEY}&page=${pageNum}&sort=r`, {

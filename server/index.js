@@ -7,7 +7,7 @@ const express = require('express')
       , cors = require('cors')
       , passport = require('passport')
       , Auth0Strategy = require('passport-auth0')
-      , config_server = require('../src/config_server')
+      , config_server = require('./config_server')
       , path = require('path')
 
 // INITIALIZE //

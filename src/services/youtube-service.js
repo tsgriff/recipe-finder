@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {YOUTUBE_API_KEY} from '../config.js';
+import {YOUTUBE_API_KEY} from '../config_server.js';
 
 
 export const videoSearch = function(term, page) {
